@@ -5,7 +5,7 @@ import type { Article } from './types'
 const parser = new Parser({
   timeout: 8000,
   headers: {
-    'User-Agent': 'BackstretchReporter/1.0 (backstretchreporter.com)',
+    'User-Agent': 'BackstretchReport/1.0 (backstretchreport.com)',
   },
 })
 

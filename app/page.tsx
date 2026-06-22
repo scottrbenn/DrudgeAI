@@ -70,11 +70,11 @@ export default async function Home() {
 
       <footer className="site-footer">
         <p>
-          © {new Date().getFullYear()} Backstretch Reporter · backstretchreporter.com ·{' '}
-          <a href="mailto:tips@backstretchreporter.com">tips@backstretchreporter.com</a>
+          © {new Date().getFullYear()} Backstretch Report · backstretchreport.com ·{' '}
+          <a href="mailto:tips@backstretchreport.com">tips@backstretchreport.com</a>
         </p>
         <p style={{ marginTop: '4px' }}>
-          All linked content belongs to its original publisher. Backstretch Reporter aggregates
+          All linked content belongs to its original publisher. Backstretch Report aggregates
           publicly available headlines only.
         </p>
       </footer>

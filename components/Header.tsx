@@ -38,7 +38,7 @@ export default function Header() {
       {/* Site name + date */}
       <div className="site-header">
         <div className="site-tagline">Est. 2026 · Thoroughbred Racing News</div>
-        <h1 className="site-name">🐎 Backstretch Reporter</h1>
+        <h1 className="site-name">🐎 Backstretch Report</h1>
         <div className="site-date">{dateStr} ET &nbsp;·&nbsp; Updated every 30 minutes</div>
 
         {/* Nav */}
