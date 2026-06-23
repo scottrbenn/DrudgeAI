@@ -524,6 +524,57 @@ a:visited { color: var(--purple); }
   }
 }
 
+/* ─── Tweet links ────────────────────────────────────────────── */
+.tweet-link {
+  border-left: 3px solid #1d9bf0;
+  padding: 5px 0 5px 8px;
+  margin-bottom: 8px;
+}
+
+.tweet-text {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 3px;
+}
+
+.tweet-text:hover {
+  color: var(--red-lt);
+  text-decoration: underline;
+}
+
+.tweet-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tweet-author {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: #1d9bf0;
+}
+
+.tweet-stats {
+  display: flex;
+  gap: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.tweet-age {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: auto;
+}
+
 /* ─── Footer ─────────────────────────────────────────────────── */
 .site-footer {
   text-align: center;

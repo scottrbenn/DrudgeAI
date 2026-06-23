@@ -66,6 +66,11 @@ export const FEEDS: FeedConfig[] = [
     url: 'https://www.americanracehorse.com/feed/',
     priority: 3,
   },
+  {
+    name: 'Horse Racing Scoop',
+    url: 'https://horseracingscoop.com/blog/feed/',
+    priority: 3,
+  },
 ]
 
 // North American thoroughbred racing YouTube channels (free Atom feeds, no API key needed)

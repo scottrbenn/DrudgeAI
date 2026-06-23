@@ -1,4 +1,5 @@
 import { fetchAllArticles, fetchYouTubeVideos } from '@/lib/rss'
+import { fetchTrendingRacingTweets } from '@/lib/twitter'
 import { AD_SLOT } from '@/lib/feeds'
 import Header from '@/components/Header'
 import NewsletterBanner from '@/components/NewsletterBanner'
@@ -32,7 +33,11 @@ function categorize(articles: Article[]) {
 }
 
 export default async function Home() {
-  const [all, youtubeVideos] = await Promise.all([fetchAllArticles(), fetchYouTubeVideos()])
+  const [all, youtubeVideos, tweets] = await Promise.all([
+    fetchAllArticles(),
+    fetchYouTubeVideos(),
+    fetchTrendingRacingTweets(),
+  ])
   const { breaking, tips, breeding, general } = categorize(all)
 
   // Single story shown above the masthead — Drudge's signature element
@@ -70,6 +75,7 @@ export default async function Home() {
           subFeatured={subFeatured}
           topStories={topStories}
           moreStories={moreStories}
+          tweets={tweets}
         />
         <RightColumn tips={tips.slice(0, 8)} breeding={breeding.slice(0, 8)} ad={AD_SLOT} />
       </div>

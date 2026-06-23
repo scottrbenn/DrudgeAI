@@ -1,5 +1,6 @@
-import type { Article } from '@/lib/types'
+import type { Article, Tweet } from '@/lib/types'
 import ArticleLink from './ArticleLink'
+import TweetLink from './TweetLink'
 import { formatAge } from '@/lib/rss'
 
 interface Props {
@@ -7,9 +8,10 @@ interface Props {
   subFeatured: Article | null
   topStories: Article[]
   moreStories: Article[]
+  tweets: Tweet[]
 }
 
-export default function CenterColumn({ featured, subFeatured, topStories, moreStories }: Props) {
+export default function CenterColumn({ featured, subFeatured, topStories, moreStories, tweets }: Props) {
   return (
     <main className="col col-center">
 
@@ -62,6 +64,16 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
       {topStories.map((a) => (
         <ArticleLink key={a.id} article={a} showSource />
       ))}
+
+      {tweets.length > 0 && (
+        <>
+          <hr className="divider" />
+          <h3 className="section-header">&#120143; Trending on X</h3>
+          {tweets.map((t) => (
+            <TweetLink key={t.id} tweet={t} />
+          ))}
+        </>
+      )}
 
       <hr className="divider" />
 

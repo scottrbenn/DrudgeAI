@@ -9,6 +9,17 @@ export interface Article {
   imageUrl?: string   // first image found in feed item, if any
 }
 
+export interface Tweet {
+  id: string
+  text: string
+  author: string
+  authorHandle: string
+  url: string
+  likes: number
+  retweets: number
+  pubDate: Date
+}
+
 export interface AdSlot {
   headline: string
   subheadline?: string
