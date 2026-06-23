@@ -1,6 +1,7 @@
 import { fetchAllArticles } from '@/lib/rss'
 import { AD_SLOT } from '@/lib/feeds'
 import Header from '@/components/Header'
+import TopStory from '@/components/TopStory'
 import LeftColumn from '@/components/LeftColumn'
 import CenterColumn from '@/components/CenterColumn'
 import RightColumn from '@/components/RightColumn'
@@ -33,28 +34,28 @@ export default async function Home() {
   const all = await fetchAllArticles()
   const { breaking, tips, breeding, general } = categorize(all)
 
-  // Center column: featured = newest breaking or newest overall
-  const featured    = breaking[0] ?? all[0] ?? null
-  const subFeatured = breaking[1] ?? all[1] ?? null
+  // Single story shown above the masthead — Drudge's signature element
+  const topStory    = breaking[0] ?? all[0] ?? null
+  const featured    = (breaking[1] ?? all.find((a) => a.id !== topStory?.id)) ?? null
+  const subFeatured = all.filter((a) => a.id !== topStory?.id && a.id !== featured?.id)[0] ?? null
 
-  // Remove featured stories from the pool so they don't repeat
-  const featuredIds = new Set([featured?.id, subFeatured?.id])
-  const pool = all.filter((a) => !featuredIds.has(a.id))
+  // Remove the three headline stories from the link pool so they don't repeat
+  const headlineIds = new Set([topStory?.id, featured?.id, subFeatured?.id])
+  const pool = all.filter((a) => !headlineIds.has(a.id))
 
-  // Left column breaking: next 8 breaking stories (after featured)
+  // Left column: next breaking stories after the top three
   const leftBreaking = breaking.slice(2, 10)
 
   // Left "from the barn": recent general stories
   const leftRecent = pool.filter((a) => !breaking.includes(a)).slice(0, 12)
 
-  // Center top stories: up to 15 articles in 3-col grid
-  const topStories = pool.slice(0, 15)
-
-  // Center "in the news": next 12
+  // Center top stories and more stories
+  const topStories  = pool.slice(0, 15)
   const moreStories = pool.slice(15, 27)
 
   return (
     <>
+      {topStory && <TopStory article={topStory} />}
       <Header />
 
       <div className="columns-wrap">

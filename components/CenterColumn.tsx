@@ -13,7 +13,7 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
   return (
     <main className="col col-center">
 
-      {/* Main featured story — biggest headline on the page */}
+      {/* Main featured story — second biggest headline after the above-masthead story */}
       {featured && (
         <>
           <div className="featured-headline">
@@ -22,8 +22,8 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
               {featured.title}
             </a>
           </div>
-          <div style={{ marginBottom: '6px', fontSize: '11px', color: '#666', fontFamily: 'Arial, sans-serif' }}>
-            {featured.source} · {formatAge(featured.pubDate)}
+          <div style={{ marginBottom: '8px', fontSize: '11px', color: '#666', fontFamily: 'Arial, sans-serif' }}>
+            {featured.source} &nbsp;·&nbsp; {formatAge(featured.pubDate)}
           </div>
           <hr className="divider" />
         </>
@@ -38,34 +38,26 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
               {subFeatured.title}
             </a>
           </div>
-          <div style={{ marginBottom: '6px', fontSize: '11px', color: '#666', fontFamily: 'Arial, sans-serif' }}>
-            {subFeatured.source} · {formatAge(subFeatured.pubDate)}
+          <div style={{ marginBottom: '8px', fontSize: '11px', color: '#666', fontFamily: 'Arial, sans-serif' }}>
+            {subFeatured.source} &nbsp;·&nbsp; {formatAge(subFeatured.pubDate)}
           </div>
           <hr className="divider" />
         </>
       )}
 
-      {/* Top stories — three columns of links */}
+      {/* Top stories — dense single-column list, Drudge style */}
       <div className="section-header">Top Stories</div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: '0 12px',
-        }}
-      >
-        {topStories.map((a) => (
-          <ArticleLink key={a.id} article={a} showSource={false} />
-        ))}
-      </div>
+      {topStories.map((a) => (
+        <ArticleLink key={a.id} article={a} showSource />
+      ))}
 
       <hr className="divider" />
 
-      {/* In the News */}
       <div className="section-header">In the News</div>
       {moreStories.map((a) => (
         <ArticleLink key={a.id} article={a} showSource showAge />
       ))}
+
     </main>
   )
 }

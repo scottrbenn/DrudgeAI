@@ -10,20 +10,37 @@ interface Props {
   ad: AdSlot
 }
 
-const TRIPLE_CROWN = [
+const MAJOR_RACES = [
   { label: 'Kentucky Derby — Churchill Downs', href: 'https://www.kentuckyderby.com' },
   { label: 'Preakness Stakes — Pimlico', href: 'https://www.preakness.com' },
-  { label: 'Belmont Stakes — Saratoga', href: 'https://www.belmontstakes.com' },
+  { label: "Belmont Stakes — Saratoga", href: 'https://www.belmontstakes.com' },
   { label: "Breeders' Cup", href: 'https://www.breederscup.com' },
   { label: 'Royal Ascot', href: 'https://www.ascot.com' },
   { label: 'Cheltenham Festival', href: 'https://www.cheltenham.co.uk' },
+  { label: 'Melbourne Cup', href: 'https://www.flemington.com.au/melbourne-cup-carnival' },
+]
+
+const WAGERING = [
+  { label: 'TVG / FanDuel Racing', href: 'https://www.tvg.com' },
+  { label: 'TwinSpires', href: 'https://www.twinspires.com' },
+  { label: 'DraftKings Racing', href: 'https://www.draftkings.com/racing' },
+  { label: 'BetMGM Horse Racing', href: 'https://sports.betmgm.com/en/horse-racing' },
+  { label: '1/ST BET', href: 'https://www.1stbet.com' },
+  { label: 'NYRA Bets', href: 'https://www.nyrabets.com' },
+]
+
+const WATCH = [
+  { label: 'Racing TV — Live Streams', href: 'https://www.racingtv.com' },
+  { label: 'FS2 / Fox Sports Racing', href: 'https://www.foxsports.com' },
+  { label: 'HRTV', href: 'https://www.hrtv.com' },
+  { label: 'NBC Sports — Racing', href: 'https://www.nbcsports.com' },
 ]
 
 export default function RightColumn({ tips, breeding, ad }: Props) {
   return (
     <aside className="col">
 
-      {/* Newsletter sign-up — prime real estate */}
+      {/* Newsletter sign-up — top of right column, prime real estate */}
       <NewsletterSignup />
 
       {/* Sponsored ad slot */}
@@ -31,19 +48,17 @@ export default function RightColumn({ tips, breeding, ad }: Props) {
 
       <hr className="divider" />
 
-      {/* Tips & Picks */}
       <div className="section-header" id="tips">Tips &amp; Picks</div>
       {tips.length > 0 ? (
         tips.map((a) => (
           <ArticleLink key={a.id} article={a} showSource />
         ))
       ) : (
-        <p style={{ color: '#666', fontSize: '11px' }}>No tip stories yet today.</p>
+        <p style={{ color: '#666', fontSize: '11px' }}>No tip stories today yet.</p>
       )}
 
       <hr className="divider" />
 
-      {/* Breeding news */}
       <div className="section-header" id="breeding">Breeding &amp; Sales</div>
       {breeding.length > 0 ? (
         breeding.map((a) => (
@@ -55,15 +70,38 @@ export default function RightColumn({ tips, breeding, ad }: Props) {
 
       <hr className="divider" />
 
-      {/* Major races quick links */}
+      {/* Permanent featured links — Drudge "Wire Services" equivalent */}
       <div className="section-header">Major Races</div>
-      {TRIPLE_CROWN.map((link) => (
+      {MAJOR_RACES.map((link) => (
         <div className="article-link" key={link.href}>
           <a href={link.href} target="_blank" rel="noopener noreferrer">
             {link.label}
           </a>
         </div>
       ))}
+
+      <hr className="divider" />
+
+      <div className="section-header">Wagering</div>
+      {WAGERING.map((link) => (
+        <div className="article-link" key={link.href}>
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        </div>
+      ))}
+
+      <hr className="divider" />
+
+      <div className="section-header">Watch Live</div>
+      {WATCH.map((link) => (
+        <div className="article-link" key={link.href}>
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        </div>
+      ))}
+
     </aside>
   )
 }
