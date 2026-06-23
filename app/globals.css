@@ -77,6 +77,34 @@ a:visited { color: var(--purple); }
   color: var(--red-lt);
 }
 
+/* ─── Article links with inline thumbnail ────────────────────────── */
+.article-link-with-thumb {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.article-thumb-wrap {
+  flex-shrink: 0;
+  text-decoration: none;
+  display: block;
+}
+
+.article-thumb {
+  width: 80px;
+  height: 56px;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.article-thumb-body {
+  flex: 1;
+  min-width: 0;
+}
+
 /* ─── Article links — Courier New matches Drudge's "teletype" nav font ── */
 .article-link {
   display: block;

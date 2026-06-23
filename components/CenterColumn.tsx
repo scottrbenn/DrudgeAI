@@ -3,6 +3,7 @@ import ArticleLink from './ArticleLink'
 import TweetLink from './TweetLink'
 import AdSlotComponent from './AdSlot'
 import SponsoredLinkComponent from './SponsoredLink'
+import ThumbLink from './ThumbLink'
 import { formatAge } from '@/lib/rss'
 
 interface Props {
@@ -23,10 +24,12 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
       {featured && (
         <article>
           {featured.imageUrl && (
-            <a href={featured.url} target="_blank" rel="noopener noreferrer">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={featured.imageUrl} alt={featured.title} className="featured-image" />
-            </a>
+            <ThumbLink
+              href={featured.url}
+              src={featured.imageUrl}
+              imgClassName="featured-image"
+              featured
+            />
           )}
           <h2 className="featured-headline">
             {featured.isBreaking && <span className="tag-breaking">Breaking</span>}
@@ -45,10 +48,11 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
       {subFeatured && (
         <article>
           {subFeatured.imageUrl && (
-            <a href={subFeatured.url} target="_blank" rel="noopener noreferrer">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={subFeatured.imageUrl} alt={subFeatured.title} className="featured-image featured-image-sub" />
-            </a>
+            <ThumbLink
+              href={subFeatured.url}
+              src={subFeatured.imageUrl}
+              imgClassName="featured-image featured-image-sub"
+            />
           )}
           <h2 className="sub-headline">
             {subFeatured.isBreaking && <span className="tag-breaking">Breaking</span>}
@@ -75,7 +79,7 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
       {/* Sponsored links injected every 5th article */}
       <h3 className="section-header">Top Stories</h3>
       {topStories.flatMap((a, i) => {
-        const items = [<ArticleLink key={a.id} article={a} showSource />]
+        const items = [<ArticleLink key={a.id} article={a} showSource showImage />]
         const sp = sponsoredLinks[(i - 4) / 5 | 0]
         if ((i + 1) % 5 === 0 && sp) items.push(<SponsoredLinkComponent key={`sp-${i}`} link={sp} />)
         return items

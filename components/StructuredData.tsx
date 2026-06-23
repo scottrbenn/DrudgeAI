@@ -22,7 +22,7 @@ export default function StructuredData() {
     },
     description:
       "Breaking thoroughbred horse racing news, tips, picks, and results. The premier North American horse racing news aggregator covering the Kentucky Derby, Breeders' Cup, Saratoga, Churchill Downs, and every major race.",
-    email: 'tips@backstretchreport.com',
+    email: 'thebackstretchreport@gmail.com',
     foundingDate: '2025',
     knowsAbout: [
       'Thoroughbred Horse Racing',

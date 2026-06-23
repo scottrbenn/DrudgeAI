@@ -15,28 +15,34 @@ const parser = new Parser({
   },
 })
 
+// Force http → https so images load on mobile (iOS blocks mixed content)
+function ensureHttps(url: string): string {
+  return url.replace(/^http:/i, 'https:')
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function extractImage(item: any): string | undefined {
   // media:content — most common in horse racing RSS feeds
   const mc = item.mediaContent
   if (mc) {
-    if (Array.isArray(mc) && mc[0]?.$?.url) return mc[0].$.url
-    if (mc?.$?.url) return mc.$.url
+    if (Array.isArray(mc) && mc[0]?.$?.url) return ensureHttps(mc[0].$.url)
+    if (mc?.$?.url) return ensureHttps(mc.$.url)
   }
   // media:thumbnail
   const mt = item.mediaThumbnail
   if (mt) {
-    if (Array.isArray(mt) && mt[0]?.$?.url) return mt[0].$.url
-    if (mt?.$?.url) return mt.$.url
+    if (Array.isArray(mt) && mt[0]?.$?.url) return ensureHttps(mt[0].$.url)
+    if (mt?.$?.url) return ensureHttps(mt.$.url)
   }
   // enclosure (image attachment)
   if (item.enclosure?.url && item.enclosure?.type?.startsWith('image/')) {
-    return item.enclosure.url
+    return ensureHttps(item.enclosure.url)
   }
   // first <img> tag inside content:encoded or content
   const html: string = item['content:encoded'] ?? item.content ?? ''
   const match = /<img[^>]+src=["']([^"']+)["']/i.exec(html)
-  return match?.[1]
+  if (match?.[1]) return ensureHttps(match[1])
+  return undefined
 }
 
 function cleanTitle(raw: string): string {
