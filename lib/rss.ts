@@ -7,7 +7,37 @@ const parser = new Parser({
   headers: {
     'User-Agent': 'BackstretchReport/1.0 (backstretchreport.com)',
   },
+  customFields: {
+    item: [
+      ['media:content',   'mediaContent'],
+      ['media:thumbnail', 'mediaThumbnail'],
+    ],
+  },
 })
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function extractImage(item: any): string | undefined {
+  // media:content — most common in horse racing RSS feeds
+  const mc = item.mediaContent
+  if (mc) {
+    if (Array.isArray(mc) && mc[0]?.$?.url) return mc[0].$.url
+    if (mc?.$?.url) return mc.$.url
+  }
+  // media:thumbnail
+  const mt = item.mediaThumbnail
+  if (mt) {
+    if (Array.isArray(mt) && mt[0]?.$?.url) return mt[0].$.url
+    if (mt?.$?.url) return mt.$.url
+  }
+  // enclosure (image attachment)
+  if (item.enclosure?.url && item.enclosure?.type?.startsWith('image/')) {
+    return item.enclosure.url
+  }
+  // first <img> tag inside content:encoded or content
+  const html: string = item['content:encoded'] ?? item.content ?? ''
+  const match = /<img[^>]+src=["']([^"']+)["']/i.exec(html)
+  return match?.[1]
+}
 
 function cleanTitle(raw: string): string {
   return raw
@@ -38,6 +68,7 @@ async function fetchFeed(feed: FeedConfig): Promise<Article[]> {
         pubDate,
         isNew: ageHours < 3,
         isBreaking: feed.priority === 1 && ageHours < 8,
+        imageUrl: extractImage(item),
       }
     })
   } catch {

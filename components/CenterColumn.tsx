@@ -16,6 +16,12 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
       {/* Main featured story — second biggest headline after the above-masthead story */}
       {featured && (
         <>
+          {featured.imageUrl && (
+            <a href={featured.url} target="_blank" rel="noopener noreferrer">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={featured.imageUrl} alt={featured.title} className="featured-image" />
+            </a>
+          )}
           <div className="featured-headline">
             {featured.isBreaking && <span className="tag-breaking">Breaking</span>}
             <a href={featured.url} target="_blank" rel="noopener noreferrer">
@@ -32,6 +38,12 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
       {/* Sub-featured story */}
       {subFeatured && (
         <>
+          {subFeatured.imageUrl && (
+            <a href={subFeatured.url} target="_blank" rel="noopener noreferrer">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={subFeatured.imageUrl} alt={subFeatured.title} className="featured-image featured-image-sub" />
+            </a>
+          )}
           <div className="sub-headline">
             {subFeatured.isBreaking && <span className="tag-breaking">Breaking</span>}
             <a href={subFeatured.url} target="_blank" rel="noopener noreferrer">

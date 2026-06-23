@@ -136,6 +136,21 @@ a:visited { color: var(--purple); }
   font-style: normal;
 }
 
+/* ─── Featured article image (Drudge-style photo above headline) ─ */
+.featured-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+
+.featured-image-sub {
+  max-height: 220px;
+  object-fit: cover;
+  object-position: center top;
+}
+
 /* ─── Featured headline — Arial like Drudge's top story font ─── */
 .featured-headline {
   font-family: Arial, Verdana, Helvetica, sans-serif;
