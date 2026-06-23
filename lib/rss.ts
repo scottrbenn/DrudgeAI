@@ -1,5 +1,5 @@
 import Parser from 'rss-parser'
-import { FEEDS, FeedConfig } from './feeds'
+import { FEEDS, FeedConfig, YOUTUBE_CHANNELS, YoutubeChannel } from './feeds'
 import type { Article } from './types'
 
 const parser = new Parser({
@@ -64,6 +64,50 @@ export async function fetchAllArticles(): Promise<Article[]> {
 
   // Newest first
   return unique.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
+}
+
+async function fetchYouTubeFeed(channel: YoutubeChannel): Promise<Article[]> {
+  const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channel.channelId}`
+  try {
+    const result = await parser.parseURL(feedUrl)
+    const now = new Date()
+
+    return (result.items ?? []).slice(0, 5).map((item) => {
+      const rawDate = item.isoDate ?? item.pubDate
+      const pubDate = rawDate ? new Date(rawDate) : now
+      const ageHours = (now.getTime() - pubDate.getTime()) / 3_600_000
+
+      return {
+        id: item.guid ?? item.link ?? String(Math.random()),
+        title: cleanTitle(item.title ?? 'Untitled'),
+        url: item.link ?? `https://www.youtube.com/channel/${channel.channelId}`,
+        source: channel.name,
+        pubDate,
+        isNew: ageHours < 48,
+        isBreaking: false,
+      }
+    })
+  } catch {
+    return []
+  }
+}
+
+export async function fetchYouTubeVideos(): Promise<Article[]> {
+  const results = await Promise.allSettled(YOUTUBE_CHANNELS.map(fetchYouTubeFeed))
+
+  const all: Article[] = []
+  for (const r of results) {
+    if (r.status === 'fulfilled') all.push(...r.value)
+  }
+
+  const seen = new Set<string>()
+  const unique = all.filter((a) => {
+    if (seen.has(a.url)) return false
+    seen.add(a.url)
+    return true
+  })
+
+  return unique.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()).slice(0, 12)
 }
 
 export function formatAge(date: Date): string {
