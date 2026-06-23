@@ -19,7 +19,7 @@ export default function NewsletterSignup() {
 
   return (
     <div className="newsletter-box" id="newsletter">
-      <h3>🐎 The Evening Dispatch</h3>
+      <h3>🐎 The Backstretch Report</h3>
       {submitted ? (
         <p style={{ color: '#006600', fontWeight: 'bold' }}>
           Thanks! Check your inbox to confirm.

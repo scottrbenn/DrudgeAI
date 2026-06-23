@@ -17,7 +17,7 @@ export default function NewsletterBanner() {
 
   return (
     <div className="newsletter-banner" id="newsletter">
-      <span className="newsletter-banner-label">&#9658; The Evening Dispatch</span>
+      <span className="newsletter-banner-label">&#9658; The Backstretch Report</span>
       {submitted ? (
         <span className="newsletter-banner-thanks">Thanks! Check your inbox to confirm.</span>
       ) : (
