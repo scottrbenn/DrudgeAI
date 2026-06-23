@@ -312,15 +312,23 @@ a:visited { color: var(--purple); }
   border-bottom: 3px double var(--border);
 }
 
-.site-name {
-  font-family: Arial, Verdana, Helvetica, sans-serif;
-  font-size: 46px;
-  font-weight: bold;
-  letter-spacing: 0.02em;
-  color: var(--red);
-  line-height: 1;
+.site-logo-wrap {
   margin: 0 0 4px;
-  text-transform: uppercase;
+  padding: 0;
+  line-height: 1;
+}
+
+.site-logo-wrap a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.site-logo {
+  max-width: 820px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .site-tagline {
@@ -405,8 +413,8 @@ a:visited { color: var(--purple); }
     padding: 12px 4px;
   }
 
-  .site-name {
-    font-size: 28px;
+  .site-logo {
+    max-width: 100%;
   }
 
   .featured-headline {

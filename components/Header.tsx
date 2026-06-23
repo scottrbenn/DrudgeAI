@@ -35,10 +35,18 @@ export default function Header() {
         </span>
       </div>
 
-      {/* Site name + date */}
+      {/* Logo + date */}
       <div className="site-header">
-        <div className="site-tagline">Est. 2026 · Thoroughbred Racing News</div>
-        <h1 className="site-name">🐎 Backstretch Report</h1>
+        <h1 className="site-logo-wrap">
+          <a href="/" aria-label="Backstretch Report — Home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="The Backstretch Report"
+              className="site-logo"
+            />
+          </a>
+        </h1>
         <div className="site-date">{dateStr} ET &nbsp;·&nbsp; Updated every 30 minutes</div>
 
         {/* Nav */}
