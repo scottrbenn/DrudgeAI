@@ -192,6 +192,29 @@ a:visited { color: var(--purple); }
   text-decoration: underline;
 }
 
+/* ─── Sponsored in-feed links ────────────────────────────────── */
+.sponsored-link {
+  background: #fffdf0;
+  border-left: 2px solid #c8a951;
+  padding: 2px 4px 2px 6px;
+  margin-left: -6px;
+  margin-bottom: 6px;
+}
+
+.tag-sponsored {
+  display: inline-block;
+  color: #888;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-right: 4px;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  padding: 0 3px;
+}
+
 /* ─── Dividers ───────────────────────────────────────────────── */
 .divider {
   border: none;

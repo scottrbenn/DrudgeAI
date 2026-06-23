@@ -1,6 +1,6 @@
 import { fetchAllArticles, fetchYouTubeVideos } from '@/lib/rss'
 import { fetchTrendingRacingTweets } from '@/lib/twitter'
-import { AD_SLOT } from '@/lib/feeds'
+import { AD_SLOTS, SPONSORED_LINKS } from '@/lib/feeds'
 import Header from '@/components/Header'
 import NewsletterBanner from '@/components/NewsletterBanner'
 import TopStory from '@/components/TopStory'
@@ -69,15 +69,17 @@ export default async function Home() {
       <Header />
 
       <div className="columns-wrap">
-        <LeftColumn breaking={leftBreaking} recent={leftRecent} youtubeVideos={youtubeVideos} />
+        <LeftColumn breaking={leftBreaking} recent={leftRecent} youtubeVideos={youtubeVideos} leftAd={AD_SLOTS.leftBottom} />
         <CenterColumn
           featured={featured}
           subFeatured={subFeatured}
           topStories={topStories}
           moreStories={moreStories}
           tweets={tweets}
+          centerAd={AD_SLOTS.centerTop}
+          sponsoredLinks={SPONSORED_LINKS}
         />
-        <RightColumn tips={tips.slice(0, 8)} breeding={breeding.slice(0, 8)} ad={AD_SLOT} />
+        <RightColumn tips={tips.slice(0, 8)} breeding={breeding.slice(0, 8)} ad={AD_SLOTS.rightTop} adMid={AD_SLOTS.rightMid} />
       </div>
 
       <footer className="site-footer">

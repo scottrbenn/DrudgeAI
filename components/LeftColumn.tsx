@@ -1,10 +1,12 @@
-import type { Article } from '@/lib/types'
+import type { Article, AdSlot } from '@/lib/types'
 import ArticleLink from './ArticleLink'
+import AdSlotComponent from './AdSlot'
 
 interface Props {
   breaking: Article[]
   recent: Article[]
   youtubeVideos: Article[]
+  leftAd?: AdSlot
 }
 
 // Featured handicappers & insiders — permanent links at column bottom (like Drudge's "Columnists")
@@ -31,7 +33,7 @@ const RESULTS_TOOLS = [
   { label: 'Keeneland — Racing & Sales', href: 'https://www.keeneland.com' },
 ]
 
-export default function LeftColumn({ breaking, recent, youtubeVideos }: Props) {
+export default function LeftColumn({ breaking, recent, youtubeVideos, leftAd }: Props) {
   return (
     <aside className="col" id="breaking">
 
@@ -63,6 +65,13 @@ export default function LeftColumn({ breaking, recent, youtubeVideos }: Props) {
       )}
 
       <hr className="divider" />
+
+      {leftAd && (
+        <>
+          <AdSlotComponent ad={leftAd} />
+          <hr className="divider" />
+        </>
+      )}
 
       {/* Permanent featured sites — Drudge "Columnists" equivalent */}
       <div className="section-header">Handicappers &amp; Insiders</div>

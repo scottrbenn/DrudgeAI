@@ -87,11 +87,60 @@ export const YOUTUBE_CHANNELS: YoutubeChannel[] = [
   { name: 'Gulfstream Park',         channelId: 'UCe3xqxd95jp8W6m_O93L-hg' },
 ]
 
-// Sponsored / ad slot content — update these with real advertiser details
-export const AD_SLOT: import('./types').AdSlot = {
-  headline: 'BET THE BOARD AT TWINSPIRES — $200 IN BONUS BETS FOR NEW MEMBERS',
-  subheadline: 'America\'s most trusted horse racing wagering platform.',
-  url: 'https://www.twinspires.com',
-  sponsor: 'TwinSpires',
-  cta: 'CLAIM OFFER →',
+// ── Display ad slots — replace URLs with your affiliate tracking links ──────
+// Positions: rightTop (right column top), rightMid (below Tips), centerTop (above Top Stories), leftBottom (below YouTube)
+export const AD_SLOTS: Record<string, import('./types').AdSlot> = {
+  rightTop: {
+    headline: 'BET THE BOARD AT TWINSPIRES — $200 IN BONUS BETS FOR NEW MEMBERS',
+    subheadline: "America's most trusted horse racing wagering platform.",
+    url: 'https://www.twinspires.com',
+    sponsor: 'TwinSpires',
+    cta: 'CLAIM OFFER →',
+  },
+  rightMid: {
+    headline: 'FANDUEL RACING — FIRST BET OFFER UP TO $500',
+    subheadline: 'Bet live races on TVG, powered by FanDuel.',
+    url: 'https://www.tvg.com',
+    sponsor: 'FanDuel Racing',
+    cta: 'BET NOW →',
+  },
+  centerTop: {
+    headline: 'DRAFTKINGS RACING — BET $5, GET $150 IN BONUS BETS',
+    subheadline: 'Horse racing wagering available in 40+ states.',
+    url: 'https://www.draftkings.com/racing',
+    sponsor: 'DraftKings Racing',
+    cta: 'GET OFFER →',
+  },
+  leftBottom: {
+    headline: 'NYRA BETS — $200 FIRST DEPOSIT BONUS FOR NEW ACCOUNTS',
+    subheadline: 'Bet New York racing and tracks nationwide.',
+    url: 'https://www.nyrabets.com',
+    sponsor: 'NYRA Bets',
+    cta: 'JOIN NOW →',
+  },
 }
+
+// ── In-feed sponsored links — injected into article lists, styled like headlines ─
+// Replace URLs with your affiliate tracking links when you sign up
+export const SPONSORED_LINKS: import('./types').SponsoredLink[] = [
+  {
+    headline: 'NEW MEMBERS GET $200 BONUS AT TWINSPIRES — FIRST WAGER MATCHED',
+    url: 'https://www.twinspires.com',
+    sponsor: 'TwinSpires',
+  },
+  {
+    headline: "FANDUEL RACING: BET THE PREP SEASON — UP TO $500 FIRST BET OFFER",
+    url: 'https://www.tvg.com',
+    sponsor: 'FanDuel Racing',
+  },
+  {
+    headline: "DRAFTKINGS RACING — BET $5 GET $150 IN BONUS BETS, 40+ STATES",
+    url: 'https://www.draftkings.com/racing',
+    sponsor: 'DraftKings Racing',
+  },
+  {
+    headline: "NYRA BETS: AMERICA'S PREMIER RACING PLATFORM — $200 WELCOME BONUS",
+    url: 'https://www.nyrabets.com',
+    sponsor: 'NYRA Bets',
+  },
+]

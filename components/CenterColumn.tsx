@@ -1,6 +1,8 @@
-import type { Article, Tweet } from '@/lib/types'
+import type { Article, Tweet, AdSlot, SponsoredLink } from '@/lib/types'
 import ArticleLink from './ArticleLink'
 import TweetLink from './TweetLink'
+import AdSlotComponent from './AdSlot'
+import SponsoredLinkComponent from './SponsoredLink'
 import { formatAge } from '@/lib/rss'
 
 interface Props {
@@ -9,9 +11,11 @@ interface Props {
   topStories: Article[]
   moreStories: Article[]
   tweets: Tweet[]
+  centerAd?: AdSlot
+  sponsoredLinks?: SponsoredLink[]
 }
 
-export default function CenterColumn({ featured, subFeatured, topStories, moreStories, tweets }: Props) {
+export default function CenterColumn({ featured, subFeatured, topStories, moreStories, tweets, centerAd, sponsoredLinks = [] }: Props) {
   return (
     <main className="col col-center">
 
@@ -59,11 +63,23 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
         </article>
       )}
 
+      {/* Display ad — above top stories */}
+      {centerAd && (
+        <>
+          <AdSlotComponent ad={centerAd} />
+          <hr className="divider" />
+        </>
+      )}
+
       {/* Top stories — dense single-column list, Drudge style */}
+      {/* Sponsored links injected every 5th article */}
       <h3 className="section-header">Top Stories</h3>
-      {topStories.map((a) => (
-        <ArticleLink key={a.id} article={a} showSource />
-      ))}
+      {topStories.flatMap((a, i) => {
+        const items = [<ArticleLink key={a.id} article={a} showSource />]
+        const sp = sponsoredLinks[(i - 4) / 5 | 0]
+        if ((i + 1) % 5 === 0 && sp) items.push(<SponsoredLinkComponent key={`sp-${i}`} link={sp} />)
+        return items
+      })}
 
       {tweets.length > 0 && (
         <>

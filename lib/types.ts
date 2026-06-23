@@ -27,3 +27,9 @@ export interface AdSlot {
   sponsor: string
   cta: string
 }
+
+export interface SponsoredLink {
+  headline: string
+  url: string
+  sponsor: string
+}

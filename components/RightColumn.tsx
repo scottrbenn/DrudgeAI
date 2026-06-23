@@ -1,5 +1,4 @@
-import type { Article } from '@/lib/types'
-import type { AdSlot } from '@/lib/types'
+import type { Article, AdSlot } from '@/lib/types'
 import ArticleLink from './ArticleLink'
 import AdSlotComponent from './AdSlot'
 
@@ -7,6 +6,7 @@ interface Props {
   tips: Article[]
   breeding: Article[]
   ad: AdSlot
+  adMid?: AdSlot
 }
 
 const MAJOR_RACES = [
@@ -35,7 +35,7 @@ const WATCH = [
   { label: 'NBC Sports — Racing', href: 'https://www.nbcsports.com' },
 ]
 
-export default function RightColumn({ tips, breeding, ad }: Props) {
+export default function RightColumn({ tips, breeding, ad, adMid }: Props) {
   return (
     <aside className="col">
 
@@ -54,6 +54,13 @@ export default function RightColumn({ tips, breeding, ad }: Props) {
       )}
 
       <hr className="divider" />
+
+      {adMid && (
+        <>
+          <AdSlotComponent ad={adMid} />
+          <hr className="divider" />
+        </>
+      )}
 
       <div className="section-header" id="breeding">Breeding &amp; Sales</div>
       {breeding.length > 0 ? (
