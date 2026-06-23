@@ -9,13 +9,17 @@ interface Props {
 
 // Featured handicappers & insiders — permanent links at column bottom (like Drudge's "Columnists")
 const HANDICAPPERS = [
-  { label: 'Indian Charlie — Horse of the Day', href: 'https://www.indiancharlie.com' },
-  { label: 'Paulick Report', href: 'https://www.paulickreport.com' },
-  { label: 'BloodHorse', href: 'https://www.bloodhorse.com/horse-racing' },
-  { label: 'Thoroughbred Daily News', href: 'https://www.thoroughbreddailynews.com' },
-  { label: 'Past the Wire', href: 'https://pastthewire.com' },
-  { label: 'Americas Best Racing', href: 'https://www.americasbestracing.net' },
-  { label: 'Horse Racing Nation', href: 'https://www.horseracingnation.com' },
+  { label: 'Indian Charlie — Horse of the Day',   href: 'https://www.indiancharlie.com' },
+  { label: 'Paulick Report',                       href: 'https://www.paulickreport.com' },
+  { label: 'BloodHorse',                           href: 'https://www.bloodhorse.com/horse-racing' },
+  { label: 'Thoroughbred Daily News',              href: 'https://www.thoroughbreddailynews.com' },
+  { label: 'Past the Wire',                        href: 'https://pastthewire.com' },
+  { label: 'Americas Best Racing',                 href: 'https://www.americasbestracing.net' },
+  { label: 'Horse Racing Nation',                  href: 'https://www.horseracingnation.com' },
+  { label: 'Canadian Thoroughbred',                href: 'https://canadianthoroughbred.com' },
+  { label: 'This Is Horse Racing',                 href: 'https://thisishorseracing.com' },
+  { label: 'Horse Race Insider',                   href: 'https://www.horseraceinsider.com' },
+  { label: 'American Racehorse',                   href: 'https://www.americanracehorse.com' },
 ]
 
 const RESULTS_TOOLS = [

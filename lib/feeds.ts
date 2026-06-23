@@ -13,6 +13,7 @@ export interface YoutubeChannel {
 // Priority 2 = solid secondary sources
 // Priority 3 = general / supplemental
 export const FEEDS: FeedConfig[] = [
+  // ── Tier 1: Breaking news eligible ──────────────────────────────
   {
     name: 'Paulick Report',
     url: 'https://paulickreport.com/feed/',
@@ -23,6 +24,7 @@ export const FEEDS: FeedConfig[] = [
     url: 'https://www.bloodhorse.com/horse-racing/rss',
     priority: 1,
   },
+  // ── Tier 2: Primary news sources ────────────────────────────────
   {
     name: 'TDN',
     url: 'https://www.thoroughbreddailynews.com/feed/',
@@ -39,8 +41,29 @@ export const FEEDS: FeedConfig[] = [
     priority: 2,
   },
   {
+    name: 'Canadian Thoroughbred',
+    url: 'https://canadianthoroughbred.com/feed/',
+    priority: 2,
+  },
+  {
+    name: 'This Is Horse Racing',
+    url: 'https://thisishorseracing.com/feed/',
+    priority: 2,
+  },
+  // ── Tier 3: Supplemental & regional ─────────────────────────────
+  {
     name: 'Americas Best Racing',
     url: 'https://www.americasbestracing.net/feed/',
+    priority: 3,
+  },
+  {
+    name: 'Horse Race Insider',
+    url: 'https://www.horseraceinsider.com/feed/',
+    priority: 3,
+  },
+  {
+    name: 'American Racehorse',
+    url: 'https://www.americanracehorse.com/feed/',
     priority: 3,
   },
 ]
