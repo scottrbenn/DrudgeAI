@@ -43,8 +43,11 @@ export default async function Home() {
   const headlineIds = new Set([topStory?.id, featured?.id, subFeatured?.id])
   const pool = all.filter((a) => !headlineIds.has(a.id))
 
-  // Left column: next breaking stories after the top three
-  const leftBreaking = breaking.slice(2, 10)
+  // Left column: breaking stories not already used as headlines, then fill with very recent news
+  const leftBreaking = [
+    ...breaking.filter((a) => !headlineIds.has(a.id)),
+    ...all.filter((a) => !headlineIds.has(a.id) && a.isNew && !breaking.find((b) => b.id === a.id)),
+  ].slice(0, 8)
 
   // Left "from the barn": recent general stories
   const leftRecent = pool.filter((a) => !breaking.includes(a)).slice(0, 12)

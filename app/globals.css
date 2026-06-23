@@ -92,6 +92,14 @@ a:visited { color: var(--purple); }
   font-family: 'Courier New', Courier, monospace;
 }
 
+.article-link-hot a {
+  color: var(--red-lt);
+}
+
+.article-link-hot a:visited {
+  color: var(--purple);
+}
+
 /* ─── Tags ───────────────────────────────────────────────────── */
 .tag-breaking {
   display: inline-block;

@@ -8,8 +8,9 @@ interface Props {
 }
 
 export default function ArticleLink({ article, showSource = true, showAge = false }: Props) {
+  const isHot = article.isBreaking || article.isNew
   return (
-    <div className="article-link">
+    <div className={`article-link${isHot ? ' article-link-hot' : ''}`}>
       {article.isBreaking && <span className="tag-breaking">Breaking</span>}
       {!article.isBreaking && article.isNew && <span className="tag-new">New</span>}
       <a href={article.url} target="_blank" rel="noopener noreferrer">
