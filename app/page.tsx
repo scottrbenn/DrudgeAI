@@ -62,14 +62,14 @@ export default async function Home() {
       <Header />
 
       <div className="columns-wrap">
-        <LeftColumn breaking={leftBreaking} recent={leftRecent} />
+        <LeftColumn breaking={leftBreaking} recent={leftRecent} youtubeVideos={youtubeVideos} />
         <CenterColumn
           featured={featured}
           subFeatured={subFeatured}
           topStories={topStories}
           moreStories={moreStories}
         />
-        <RightColumn tips={tips.slice(0, 8)} breeding={breeding.slice(0, 8)} ad={AD_SLOT} youtubeVideos={youtubeVideos} />
+        <RightColumn tips={tips.slice(0, 8)} breeding={breeding.slice(0, 8)} ad={AD_SLOT} />
       </div>
 
       <footer className="site-footer">

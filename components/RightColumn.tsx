@@ -8,7 +8,6 @@ interface Props {
   tips: Article[]
   breeding: Article[]
   ad: AdSlot
-  youtubeVideos: Article[]
 }
 
 const MAJOR_RACES = [
@@ -37,7 +36,7 @@ const WATCH = [
   { label: 'NBC Sports — Racing', href: 'https://www.nbcsports.com' },
 ]
 
-export default function RightColumn({ tips, breeding, ad, youtubeVideos }: Props) {
+export default function RightColumn({ tips, breeding, ad }: Props) {
   return (
     <aside className="col">
 
@@ -103,16 +102,6 @@ export default function RightColumn({ tips, breeding, ad, youtubeVideos }: Props
         </div>
       ))}
 
-      <hr className="divider" />
-
-      <div className="section-header">&#9654; YouTube</div>
-      {youtubeVideos.length > 0 ? (
-        youtubeVideos.map((v) => (
-          <ArticleLink key={v.id} article={v} showSource showAge />
-        ))
-      ) : (
-        <p style={{ color: '#666', fontSize: '11px' }}>No recent videos.</p>
-      )}
 
     </aside>
   )

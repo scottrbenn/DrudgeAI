@@ -4,6 +4,7 @@ import ArticleLink from './ArticleLink'
 interface Props {
   breaking: Article[]
   recent: Article[]
+  youtubeVideos: Article[]
 }
 
 // Featured handicappers & insiders — permanent links at column bottom (like Drudge's "Columnists")
@@ -26,7 +27,7 @@ const RESULTS_TOOLS = [
   { label: 'Keeneland — Racing & Sales', href: 'https://www.keeneland.com' },
 ]
 
-export default function LeftColumn({ breaking, recent }: Props) {
+export default function LeftColumn({ breaking, recent, youtubeVideos }: Props) {
   return (
     <aside className="col" id="breaking">
 
@@ -45,6 +46,17 @@ export default function LeftColumn({ breaking, recent }: Props) {
       {recent.slice(0, 12).map((a) => (
         <ArticleLink key={a.id} article={a} showSource />
       ))}
+
+      <hr className="divider" />
+
+      <div className="section-header">&#9654; YouTube</div>
+      {youtubeVideos.length > 0 ? (
+        youtubeVideos.map((v) => (
+          <ArticleLink key={v.id} article={v} showSource showAge />
+        ))
+      ) : (
+        <p style={{ color: '#666', fontSize: '11px' }}>No recent videos.</p>
+      )}
 
       <hr className="divider" />
 
