@@ -1,6 +1,7 @@
 import { fetchAllArticles, fetchYouTubeVideos } from '@/lib/rss'
 import { AD_SLOT } from '@/lib/feeds'
 import Header from '@/components/Header'
+import NewsletterBanner from '@/components/NewsletterBanner'
 import TopStory from '@/components/TopStory'
 import LeftColumn from '@/components/LeftColumn'
 import CenterColumn from '@/components/CenterColumn'
@@ -58,6 +59,7 @@ export default async function Home() {
 
   return (
     <>
+      <NewsletterBanner />
       {topStory && <TopStory article={topStory} />}
       <Header />
 

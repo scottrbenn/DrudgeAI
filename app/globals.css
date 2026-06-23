@@ -228,6 +228,85 @@ a:visited { color: var(--purple); }
   color: var(--red-lt);
 }
 
+/* ─── Newsletter banner (top of page, full-width) ───────────── */
+.newsletter-banner {
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 16px;
+  flex-wrap: wrap;
+}
+
+.newsletter-banner-label {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.newsletter-banner-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.newsletter-banner-input {
+  border: 1px solid #555;
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: Arial, sans-serif;
+  width: 220px;
+}
+
+.newsletter-banner-input::placeholder {
+  color: #999;
+}
+
+.newsletter-banner-btn {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 5px 14px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.newsletter-banner-btn:hover {
+  background: var(--red-lt);
+}
+
+.newsletter-banner-thanks {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  color: #6f6;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .newsletter-banner {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+  .newsletter-banner-input {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
 /* ─── Newsletter box ─────────────────────────────────────────── */
 .newsletter-box {
   border: 2px solid var(--red);

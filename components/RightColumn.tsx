@@ -2,7 +2,6 @@ import type { Article } from '@/lib/types'
 import type { AdSlot } from '@/lib/types'
 import ArticleLink from './ArticleLink'
 import AdSlotComponent from './AdSlot'
-import NewsletterSignup from './NewsletterSignup'
 
 interface Props {
   tips: Article[]
@@ -39,9 +38,6 @@ const WATCH = [
 export default function RightColumn({ tips, breeding, ad }: Props) {
   return (
     <aside className="col">
-
-      {/* Newsletter sign-up — top of right column, prime real estate */}
-      <NewsletterSignup />
 
       {/* Sponsored ad slot */}
       <AdSlotComponent ad={ad} />
