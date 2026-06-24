@@ -20,6 +20,7 @@ const EXPERT_HANDICAPPERS = [
 ]
 
 const MAJOR_RACES = [
+  { label: 'NTRA — National Thoroughbred Racing Assoc.', href: 'https://www.ntra.com' },
   { label: 'Kentucky Derby — Churchill Downs', href: 'https://www.kentuckyderby.com' },
   { label: 'Preakness Stakes — Pimlico', href: 'https://www.preakness.com' },
   { label: "Belmont Stakes — Saratoga", href: 'https://www.belmontstakes.com' },

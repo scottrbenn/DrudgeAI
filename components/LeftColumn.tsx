@@ -29,8 +29,10 @@ const RESULTS_TOOLS = [
   { label: 'DRF — Past Performances', href: 'https://www.drf.com' },
   { label: 'Racing Post — Form & Odds', href: 'https://www.racingpost.com' },
   { label: 'Brisnet — Handicapping Data', href: 'https://www.brisnet.com' },
+  { label: 'HorseTourneys — Contest Wagering', href: 'https://horsetourneys.com' },
   { label: 'NYRA — New York Racing', href: 'https://www.nyra.com' },
   { label: 'Keeneland — Racing & Sales', href: 'https://www.keeneland.com' },
+  { label: 'NTRA — National Thoroughbred Racing Assoc.', href: 'https://www.ntra.com' },
 ]
 
 export default function LeftColumn({ breaking, recent, youtubeVideos, leftAd }: Props) {
