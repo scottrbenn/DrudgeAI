@@ -22,8 +22,6 @@ export async function GET(req: NextRequest) {
         Accept: 'image/webp,image/avif,image/*,*/*;q=0.8',
         Referer: `https://${parsedUrl.hostname}/`,
       },
-      // @ts-expect-error Next.js extended fetch
-      next: { revalidate: 3600 },
     })
 
     if (!upstream.ok) return new NextResponse(null, { status: 502 })
