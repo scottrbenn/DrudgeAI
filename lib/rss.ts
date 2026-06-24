@@ -15,9 +15,13 @@ const parser = new Parser({
   },
 })
 
-// Force http → https so images load on mobile (iOS blocks mixed content)
 function ensureHttps(url: string): string {
   return url.replace(/^http:/i, 'https:')
+}
+
+function proxyImage(url: string | undefined): string | undefined {
+  if (!url) return undefined
+  return `/api/img?url=${encodeURIComponent(url)}`
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,7 +87,7 @@ async function fetchFeed(feed: FeedConfig): Promise<Article[]> {
         pubDate,
         isNew: ageHours < 3,
         isBreaking: feed.priority === 1 && ageHours < 8,
-        imageUrl: extractImage(item),
+        imageUrl: proxyImage(extractImage(item)),
       }
     })
   } catch {
