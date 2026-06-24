@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Drudge-style base ─────────────────────────────────────── */
+/* ─── Hunter green theme ─────────────────────────────────────── */
 :root {
-  --red:    #990000;
-  --red-lt: #cc0000;
-  --navy:   #000080;
-  --purple: #551a8b;
-  --border: #cccccc;
-  --bg:     #ffffff;
-  --text:   #000000;
-  --muted:  #666666;
+  --green:    #2d5a27;   /* hunter green — section headers, tags, accents */
+  --green-lt: #3d7832;   /* lighter green — hover states, hot links, top story */
+  --navy:     #1a4d2e;   /* dark forest green — body link color */
+  --purple:   #551a8b;   /* visited links (standard browser convention) */
+  --border:   #cccccc;
+  --bg:       #ffffff;
+  --text:     #000000;
+  --muted:    #666666;
+
+  /* Legacy aliases — keep so every var(--red) reference picks up green */
+  --red:    var(--green);
+  --red-lt: var(--green-lt);
 }
 
 * { box-sizing: border-box; }

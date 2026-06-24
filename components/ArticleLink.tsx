@@ -7,10 +7,11 @@ interface Props {
   showSource?: boolean
   showAge?: boolean
   showImage?: boolean
+  plain?: boolean
 }
 
-export default function ArticleLink({ article, showSource = true, showAge = false, showImage = false }: Props) {
-  const isHot = article.isBreaking || article.isNew
+export default function ArticleLink({ article, showSource = true, showAge = false, showImage = false, plain = false }: Props) {
+  const isHot = !plain && (article.isBreaking || article.isNew)
 
   if (showImage && article.imageUrl) {
     return (

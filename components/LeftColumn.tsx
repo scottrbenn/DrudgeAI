@@ -61,7 +61,7 @@ export default function LeftColumn({ breaking, recent, youtubeVideos, podcasts, 
       <div className="section-header">&#9654; YouTube</div>
       {youtubeVideos.length > 0 ? (
         youtubeVideos.map((v) => (
-          <ArticleLink key={v.id} article={v} showSource showAge />
+          <ArticleLink key={v.id} article={v} showSource showAge plain />
         ))
       ) : (
         <p style={{ color: '#666', fontSize: '11px' }}>No recent videos.</p>
@@ -72,7 +72,7 @@ export default function LeftColumn({ breaking, recent, youtubeVideos, podcasts, 
       <div className="section-header">&#127911; Podcasts</div>
       {podcasts.length > 0 ? (
         podcasts.map((p) => (
-          <ArticleLink key={p.id} article={p} showSource showAge />
+          <ArticleLink key={p.id} article={p} showSource showAge plain />
         ))
       ) : (
         <p style={{ color: '#666', fontSize: '11px' }}>No recent episodes.</p>
