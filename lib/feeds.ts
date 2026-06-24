@@ -26,11 +26,11 @@ export const FEEDS: FeedConfig[] = [
   { name: 'Canadian Thoroughbred',url: 'https://canadianthoroughbred.com/feed/',              priority: 2 },
   { name: 'This Is Horse Racing', url: 'https://thisishorseracing.com/feed/',                 priority: 2 },
 
-  // ── Tier 3: Supplemental & regional — news only, not tips ────────
+  // ── Tier 3: Supplemental & regional ─────────────────────────────
   { name: 'Americas Best Racing', url: 'https://www.americasbestracing.net/feed/',            priority: 3, tipsEligible: true },
-  { name: 'Horse Race Insider',   url: 'https://www.horseraceinsider.com/feed/',              priority: 3 },
-  { name: 'American Racehorse',   url: 'https://www.americanracehorse.com/feed/',             priority: 3 },
-  { name: 'Horse Racing Scoop',   url: 'https://horseracingscoop.com/blog/feed/',             priority: 3 },
+  { name: 'Horse Race Insider',   url: 'https://www.horseraceinsider.com/feed/',              priority: 3, tipsEligible: true },
+  { name: 'American Racehorse',   url: 'https://www.americanracehorse.com/feed/',             priority: 3, tipsEligible: true },
+  { name: 'Horse Racing Scoop',   url: 'https://horseracingscoop.com/blog/feed/',             priority: 3, tipsEligible: true },
 ]
 
 // North American thoroughbred racing YouTube channels (free Atom feeds, no API key needed)
