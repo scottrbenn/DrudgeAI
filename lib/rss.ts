@@ -45,6 +45,15 @@ function extractImage(item: any): string | undefined {
   return undefined
 }
 
+// Articles must mention at least one of these to appear on the site.
+// Catches off-topic posts that horse racing sources occasionally publish.
+const RACING_PATTERN =
+  /\b(horse|horses|racing|racehorse|thoroughbred|jockey|jockeys|trainer|trainers|breeder|breeders|stallion|stallions|mare|mares|filly|fillies|foal|foals|colt|colts|gelding|geldings|yearling|yearlings|sire|dam|bloodstock|stud|derby|stakes|handicap|claiming|allowance|maiden|graded|furlong|furlongs|paddock|saratoga|churchill|keeneland|belmont|pimlico|gulfstream|oaklawn|monmouth|aqueduct|woodbine|arlington|hawthorne|equine|wagering|trifecta|exacta|superfecta|preakness|travers|entries|scratched|2yo|3yo|turf|pedigree|auction|consignor)\b|del mar|santa anita|fair grounds|breeders.{0,4}cup|kentucky derby|triple crown|horse racing/i
+
+function isRacingRelated(title: string): boolean {
+  return RACING_PATTERN.test(title)
+}
+
 function cleanTitle(raw: string): string {
   return raw
     .replace(/&amp;/g, '&')
@@ -99,8 +108,10 @@ export async function fetchAllArticles(): Promise<Article[]> {
     return true
   })
 
-  // Newest first
-  return unique.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
+  // Drop articles that aren't about horse racing, then sort newest first
+  return unique
+    .filter((a) => isRacingRelated(a.title))
+    .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
 }
 
 async function fetchYouTubeFeed(channel: YoutubeChannel): Promise<Article[]> {
