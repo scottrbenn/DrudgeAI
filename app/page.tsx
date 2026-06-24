@@ -53,14 +53,13 @@ export default async function Home() {
   const leftBreaking = [
     ...breaking.filter((a) => !headlineIds.has(a.id)),
     ...all.filter((a) => !headlineIds.has(a.id) && a.isNew && !breaking.find((b) => b.id === a.id)),
-  ].slice(0, 8)
+  ].slice(0, 5)
 
   // Left "from the barn": recent general stories
-  const leftRecent = pool.filter((a) => !breaking.includes(a)).slice(0, 12)
+  const leftRecent = pool.filter((a) => !breaking.includes(a)).slice(0, 8)
 
-  // Center top stories and more stories
-  const topStories  = pool.slice(0, 15)
-  const moreStories = pool.slice(15, 27)
+  // Center: single merged story list, ~18 articles
+  const mainStories = pool.slice(0, 18)
 
   return (
     <>
@@ -73,13 +72,12 @@ export default async function Home() {
         <CenterColumn
           featured={featured}
           subFeatured={subFeatured}
-          topStories={topStories}
-          moreStories={moreStories}
+          stories={mainStories}
           tweets={tweets}
           centerAd={AD_SLOTS.centerTop}
           sponsoredLinks={SPONSORED_LINKS}
         />
-        <RightColumn tips={tips.slice(0, 8)} breeding={breeding.slice(0, 8)} ad={AD_SLOTS.rightTop} adMid={AD_SLOTS.rightMid} />
+        <RightColumn tips={tips.slice(0, 5)} breeding={breeding.slice(0, 5)} ad={AD_SLOTS.rightTop} adMid={AD_SLOTS.rightMid} />
       </div>
 
       <footer className="site-footer">

@@ -9,14 +9,13 @@ import { formatAge } from '@/lib/rss'
 interface Props {
   featured: Article | null
   subFeatured: Article | null
-  topStories: Article[]
-  moreStories: Article[]
+  stories: Article[]
   tweets: Tweet[]
   centerAd?: AdSlot
   sponsoredLinks?: SponsoredLink[]
 }
 
-export default function CenterColumn({ featured, subFeatured, topStories, moreStories, tweets, centerAd, sponsoredLinks = [] }: Props) {
+export default function CenterColumn({ featured, subFeatured, stories, tweets, centerAd, sponsoredLinks = [] }: Props) {
   return (
     <main className="col col-center">
 
@@ -75,11 +74,10 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
         </>
       )}
 
-      {/* Top stories — dense single-column list, Drudge style */}
-      {/* Sponsored links injected every 5th article */}
-      <h3 className="section-header">Top Stories</h3>
-      {topStories.flatMap((a, i) => {
-        const items = [<ArticleLink key={a.id} article={a} showSource showImage />]
+      {/* Main story list — sponsored links injected every 5th article */}
+      <h3 className="section-header">Latest News</h3>
+      {stories.flatMap((a, i) => {
+        const items = [<ArticleLink key={a.id} article={a} showSource showImage showAge />]
         const sp = sponsoredLinks[(i - 4) / 5 | 0]
         if ((i + 1) % 5 === 0 && sp) items.push(<SponsoredLinkComponent key={`sp-${i}`} link={sp} />)
         return items
@@ -94,13 +92,6 @@ export default function CenterColumn({ featured, subFeatured, topStories, moreSt
           ))}
         </>
       )}
-
-      <hr className="divider" />
-
-      <h3 className="section-header">In the News</h3>
-      {moreStories.map((a) => (
-        <ArticleLink key={a.id} article={a} showSource showAge />
-      ))}
 
     </main>
   )
