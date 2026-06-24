@@ -22,12 +22,18 @@ const TICKER_ITEMS = [
 export default function Header() {
   const now = new Date()
   const dateStr = formatEasternTime(now)
+  const tickerDate = now.toLocaleDateString('en-US', {
+    timeZone: 'America/New_York',
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  }).toUpperCase()
 
   return (
     <header>
       {/* Ticker */}
       <div className="ticker-wrap">
-        <span className="ticker-label">Today&apos;s Tracks</span>
+        <span className="ticker-label">{tickerDate} · TODAY&apos;S TRACKS</span>
         <span className="ticker-inner">
           {TICKER_ITEMS.join('   ·   ')}
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
