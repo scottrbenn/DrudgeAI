@@ -36,8 +36,18 @@ export default function CenterColumn({ featured, subFeatured, stories, tweets, c
               {featured.title}
             </a>
           </h2>
-          <div style={{ marginBottom: '8px', fontSize: '11px', color: '#666', fontFamily: 'Arial, sans-serif' }}>
-            <span>{featured.source}</span> &nbsp;·&nbsp; <time dateTime={featured.pubDate.toISOString()}>{formatAge(featured.pubDate)}</time>
+          <div style={{ marginBottom: '8px', fontSize: '11px', color: '#666', fontFamily: 'Arial, sans-serif', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <span>{featured.source}</span>
+            <span>&nbsp;·&nbsp;</span>
+            <time dateTime={featured.pubDate.toISOString()}>{formatAge(featured.pubDate)}</time>
+            <a
+              href={`https://x.com/intent/tweet?text=${encodeURIComponent(featured.title)}&url=${encodeURIComponent(featured.url)}&via=BackstretchRpt`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="share-x-btn"
+            >
+              Share on &#120143;
+            </a>
           </div>
           <hr className="divider" />
         </article>
@@ -93,6 +103,7 @@ export default function CenterColumn({ featured, subFeatured, stories, tweets, c
         </>
       )}
 
+      <a href="#" className="back-to-top">&#9650; Back to Top</a>
     </main>
   )
 }

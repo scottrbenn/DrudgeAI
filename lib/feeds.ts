@@ -31,6 +31,10 @@ export const FEEDS: FeedConfig[] = [
   { name: 'Horse Race Insider',   url: 'https://www.horseraceinsider.com/feed/',              priority: 3, tipsEligible: true },
   { name: 'American Racehorse',   url: 'https://www.americanracehorse.com/feed/',             priority: 3, tipsEligible: true },
   { name: 'Horse Racing Scoop',   url: 'https://horseracingscoop.com/blog/feed/',             priority: 3, tipsEligible: true },
+  { name: 'Raceday360',           url: 'https://raceday360.com/feed/',                        priority: 3, tipsEligible: true },
+  { name: 'TwinSpires Blog',      url: 'https://blog.twinspires.com/feed/',                   priority: 3, tipsEligible: true },
+  { name: 'Sports Handle',        url: 'https://sportshandle.com/feed/',                      priority: 3, tipsEligible: true },
+  { name: 'NTRA',                 url: 'https://www.ntra.com/feed/',                          priority: 2 },
 ]
 
 // North American thoroughbred racing YouTube channels (free Atom feeds, no API key needed)

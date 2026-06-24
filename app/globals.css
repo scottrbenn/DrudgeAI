@@ -626,6 +626,61 @@ a:visited { color: var(--purple); }
   margin-left: auto;
 }
 
+/* ─── Race day badge ─────────────────────────────────────────── */
+.race-day-badge {
+  color: var(--red);
+  font-weight: bold;
+}
+
+/* ─── X (Twitter) share button ───────────────────────────────── */
+.share-x-btn {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff !important;
+  background: #000;
+  text-decoration: none !important;
+  padding: 2px 7px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.share-x-btn:hover {
+  background: #333;
+  color: #fff !important;
+}
+
+.share-x-btn:visited {
+  color: #fff !important;
+}
+
+/* ─── Back to top (mobile only) ──────────────────────────────── */
+.back-to-top {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    padding: 8px 0;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+  }
+
+  .back-to-top:hover {
+    color: var(--red);
+  }
+}
+
 /* ─── Footer ─────────────────────────────────────────────────── */
 .site-footer {
   text-align: center;

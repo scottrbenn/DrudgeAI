@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Backstretch Report',
   },
   description:
-    "The premier source for breaking thoroughbred horse racing news, expert picks, betting tips, and race results. Covering the Kentucky Derby, Breeders' Cup, Saratoga, and every major North American race. Updated every 30 minutes.",
+    "The premier source for breaking thoroughbred horse racing news, expert picks, betting tips, and race results. Covering the Kentucky Derby, Breeders' Cup, Saratoga, and every major North American race. Updated every 10 minutes.",
   keywords: [
     'horse racing news',
     'thoroughbred racing news',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Backstretch Report',
     title: 'Backstretch Report — Thoroughbred Horse Racing News & Tips',
     description:
-      "Breaking thoroughbred horse racing news, expert picks, and betting tips. The premier North American horse racing news source, updated every 30 minutes.",
+      "Breaking thoroughbred horse racing news, expert picks, and betting tips. The premier North American horse racing news source, updated every 10 minutes.",
     images: [
       {
         url: '/logo.png',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Backstretch Report — Horse Racing News & Tips',
     description:
-      "Breaking thoroughbred horse racing news, expert picks, and betting tips. Updated every 30 minutes.",
+      "Breaking thoroughbred horse racing news, expert picks, and betting tips. Updated every 10 minutes.",
     images: ['/logo.png'],
   },
   robots: {

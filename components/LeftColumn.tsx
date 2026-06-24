@@ -87,7 +87,7 @@ export default function LeftColumn({ breaking, recent, youtubeVideos, leftAd }: 
 
       <hr className="divider" />
 
-      <div className="section-header">Results &amp; Form</div>
+      <div className="section-header" id="results">Results &amp; Form</div>
       {RESULTS_TOOLS.map((link) => (
         <div className="article-link" key={link.href}>
           <a href={link.href} target="_blank" rel="noopener noreferrer">
@@ -96,6 +96,7 @@ export default function LeftColumn({ breaking, recent, youtubeVideos, leftAd }: 
         </div>
       ))}
 
+      <a href="#" className="back-to-top">&#9650; Back to Top</a>
     </aside>
   )
 }

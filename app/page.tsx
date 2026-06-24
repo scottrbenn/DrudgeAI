@@ -9,8 +9,8 @@ import CenterColumn from '@/components/CenterColumn'
 import RightColumn from '@/components/RightColumn'
 import type { Article } from '@/lib/types'
 
-// Cache this page for 30 minutes — Next.js will auto-refresh in the background
-export const revalidate = 1800
+// Cache this page for 10 minutes — Next.js will auto-refresh in the background
+export const revalidate = 600
 
 // Only articles from these professional sources appear in Tips & Picks
 const TIPS_SOURCES = new Set(FEEDS.filter((f) => f.tipsEligible).map((f) => f.name))

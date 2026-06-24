@@ -128,6 +128,7 @@ export default function RightColumn({ tips, breeding, ad, adMid }: Props) {
       ))}
 
 
+      <a href="#" className="back-to-top">&#9650; Back to Top</a>
     </aside>
   )
 }

@@ -65,7 +65,14 @@ export default function Header() {
             />
           </a>
         </h1>
-        <div className="site-date">{dateStr} ET &nbsp;·&nbsp; Updated every 30 minutes</div>
+        <div className="site-date">
+          {dateStr} ET &nbsp;·&nbsp; Updated every 10 minutes
+          {todayCount > 0 && (
+            <span className="race-day-badge">
+              &nbsp;·&nbsp; {todayCount} track{todayCount !== 1 ? 's' : ''} racing today
+            </span>
+          )}
+        </div>
 
         {/* Nav */}
         <nav className="site-nav">
