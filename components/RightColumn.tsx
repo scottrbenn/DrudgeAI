@@ -9,6 +9,17 @@ interface Props {
   adMid?: AdSlot
 }
 
+const EXPERT_HANDICAPPERS = [
+  { label: 'Indian Charlie — Horse of the Day',        href: 'https://www.indiancharlie.com' },
+  { label: 'Racing Dudes — Daily Best Bets',           href: 'https://www.racingdudes.com/best-bets/' },
+  { label: 'Horse Racing Nation — Best Bets',          href: 'https://www.horseracingnation.com/best-bets' },
+  { label: 'Past the Wire — Handicapping',             href: 'https://pastthewire.com' },
+  { label: 'Brisnet — Free Picks',                     href: 'https://www.brisnet.com/cgi-bin/free.cgi' },
+  { label: 'DRF — Handicapping Central',               href: 'https://www.drf.com/handicapping' },
+  { label: 'Pace Advantage — Handicapping Forum',      href: 'https://www.paceadvantage.com' },
+  { label: 'TrackMaster — Speed Figures',              href: 'https://www.trackmaster.com' },
+]
+
 const MAJOR_RACES = [
   { label: 'Kentucky Derby — Churchill Downs', href: 'https://www.kentuckyderby.com' },
   { label: 'Preakness Stakes — Pimlico', href: 'https://www.preakness.com' },
@@ -47,11 +58,22 @@ export default function RightColumn({ tips, breeding, ad, adMid }: Props) {
       <div className="section-header" id="tips">Tips &amp; Picks</div>
       {tips.length > 0 ? (
         tips.map((a) => (
-          <ArticleLink key={a.id} article={a} showSource />
+          <ArticleLink key={a.id} article={a} showSource showAge />
         ))
       ) : (
-        <p style={{ color: '#666', fontSize: '11px' }}>No tip stories today yet.</p>
+        <p style={{ color: '#666', fontSize: '11px' }}>No picks posted yet today — check back soon.</p>
       )}
+
+      <hr className="divider" />
+
+      <div className="section-header">Expert Handicappers</div>
+      {EXPERT_HANDICAPPERS.map((link) => (
+        <div className="article-link" key={link.href}>
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        </div>
+      ))}
 
       <hr className="divider" />
 

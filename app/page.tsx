@@ -1,6 +1,6 @@
 import { fetchAllArticles, fetchYouTubeVideos } from '@/lib/rss'
 import { fetchTrendingRacingTweets } from '@/lib/twitter'
-import { AD_SLOTS, SPONSORED_LINKS } from '@/lib/feeds'
+import { AD_SLOTS, SPONSORED_LINKS, FEEDS } from '@/lib/feeds'
 import Header from '@/components/Header'
 import NewsletterBanner from '@/components/NewsletterBanner'
 import TopStory from '@/components/TopStory'
@@ -12,9 +12,13 @@ import type { Article } from '@/lib/types'
 // Cache this page for 30 minutes — Next.js will auto-refresh in the background
 export const revalidate = 1800
 
-// Simple keyword matching to route articles into columns
+// Only articles from these professional sources appear in Tips & Picks
+const TIPS_SOURCES = new Set(FEEDS.filter((f) => f.tipsEligible).map((f) => f.name))
+
 function categorize(articles: Article[]) {
-  const tipKeywords   = /\b(pick|tip|best bet|handicap|preview|analysis|prediction|top horse|worth backing)\b/i
+  // Specific betting/handicapping intent — exclude broad terms like "analysis" and "preview"
+  // that amateur sites overuse, and "handicap" which is also a race type
+  const tipKeywords = /\b(picks?|best bet[s]?|best play[s]?|top pick[s]?|top horse[s]?|prediction[s]?|worth backing|selections?|morning line|value play|longshot[s]?|handicapping|wagering guide|betting guide|race card)\b/i
   const breedKeywords = /\b(breed|foal|stallion|mare|stud|auction|sale|yearling|wean|keeneland sale|fasig)\b/i
 
   const breaking:  Article[] = []
@@ -23,8 +27,9 @@ function categorize(articles: Article[]) {
   const general:   Article[] = []
 
   for (const a of articles) {
-    if (a.isBreaking)              { breaking.push(a);  continue }
-    if (tipKeywords.test(a.title)) { tips.push(a);      continue }
+    if (a.isBreaking) { breaking.push(a); continue }
+    // Tips only from credentialed professional sources
+    if (tipKeywords.test(a.title) && TIPS_SOURCES.has(a.source)) { tips.push(a); continue }
     if (breedKeywords.test(a.title)) { breeding.push(a); continue }
     general.push(a)
   }
@@ -77,7 +82,7 @@ export default async function Home() {
           centerAd={AD_SLOTS.centerTop}
           sponsoredLinks={SPONSORED_LINKS}
         />
-        <RightColumn tips={tips.slice(0, 5)} breeding={breeding.slice(0, 5)} ad={AD_SLOTS.rightTop} adMid={AD_SLOTS.rightMid} />
+        <RightColumn tips={tips.slice(0, 10)} breeding={breeding.slice(0, 5)} ad={AD_SLOTS.rightTop} adMid={AD_SLOTS.rightMid} />
       </div>
 
       <footer className="site-footer">

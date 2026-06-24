@@ -2,6 +2,7 @@ export interface FeedConfig {
   name: string
   url: string
   priority: 1 | 2 | 3
+  tipsEligible?: boolean  // only professional sources qualify for Tips & Picks routing
 }
 
 export interface YoutubeChannel {
@@ -14,63 +15,22 @@ export interface YoutubeChannel {
 // Priority 3 = general / supplemental
 export const FEEDS: FeedConfig[] = [
   // ── Tier 1: Breaking news eligible ──────────────────────────────
-  {
-    name: 'Paulick Report',
-    url: 'https://paulickreport.com/feed/',
-    priority: 1,
-  },
-  {
-    name: 'BloodHorse',
-    url: 'https://www.bloodhorse.com/horse-racing/rss',
-    priority: 1,
-  },
-  // ── Tier 2: Primary news sources ────────────────────────────────
-  {
-    name: 'TDN',
-    url: 'https://www.thoroughbreddailynews.com/feed/',
-    priority: 2,
-  },
-  {
-    name: 'Horse Racing Nation',
-    url: 'https://www.horseracingnation.com/rss',
-    priority: 2,
-  },
-  {
-    name: 'Past the Wire',
-    url: 'https://pastthewire.com/feed/',
-    priority: 2,
-  },
-  {
-    name: 'Canadian Thoroughbred',
-    url: 'https://canadianthoroughbred.com/feed/',
-    priority: 2,
-  },
-  {
-    name: 'This Is Horse Racing',
-    url: 'https://thisishorseracing.com/feed/',
-    priority: 2,
-  },
-  // ── Tier 3: Supplemental & regional ─────────────────────────────
-  {
-    name: 'Americas Best Racing',
-    url: 'https://www.americasbestracing.net/feed/',
-    priority: 3,
-  },
-  {
-    name: 'Horse Race Insider',
-    url: 'https://www.horseraceinsider.com/feed/',
-    priority: 3,
-  },
-  {
-    name: 'American Racehorse',
-    url: 'https://www.americanracehorse.com/feed/',
-    priority: 3,
-  },
-  {
-    name: 'Horse Racing Scoop',
-    url: 'https://horseracingscoop.com/blog/feed/',
-    priority: 3,
-  },
+  { name: 'Paulick Report',       url: 'https://paulickreport.com/feed/',                    priority: 1, tipsEligible: true },
+  { name: 'BloodHorse',           url: 'https://www.bloodhorse.com/horse-racing/rss',         priority: 1, tipsEligible: true },
+
+  // ── Tier 2: Primary news + professional handicapping ─────────────
+  { name: 'TDN',                  url: 'https://www.thoroughbreddailynews.com/feed/',          priority: 2, tipsEligible: true },
+  { name: 'Horse Racing Nation',  url: 'https://www.horseracingnation.com/rss',               priority: 2, tipsEligible: true },
+  { name: 'Past the Wire',        url: 'https://pastthewire.com/feed/',                       priority: 2, tipsEligible: true },
+  { name: 'Racing Dudes',         url: 'https://www.racingdudes.com/feed/',                   priority: 2, tipsEligible: true },
+  { name: 'Canadian Thoroughbred',url: 'https://canadianthoroughbred.com/feed/',              priority: 2 },
+  { name: 'This Is Horse Racing', url: 'https://thisishorseracing.com/feed/',                 priority: 2 },
+
+  // ── Tier 3: Supplemental & regional — news only, not tips ────────
+  { name: 'Americas Best Racing', url: 'https://www.americasbestracing.net/feed/',            priority: 3, tipsEligible: true },
+  { name: 'Horse Race Insider',   url: 'https://www.horseraceinsider.com/feed/',              priority: 3 },
+  { name: 'American Racehorse',   url: 'https://www.americanracehorse.com/feed/',             priority: 3 },
+  { name: 'Horse Racing Scoop',   url: 'https://horseracingscoop.com/blog/feed/',             priority: 3 },
 ]
 
 // North American thoroughbred racing YouTube channels (free Atom feeds, no API key needed)
