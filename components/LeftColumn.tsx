@@ -11,6 +11,7 @@ interface Props {
 
 // Featured handicappers & insiders — permanent links at column bottom (like Drudge's "Columnists")
 const HANDICAPPERS = [
+  { label: 'Indian Charlie — Horse of the Day',   href: 'https://www.indiancharlie.com' },
   { label: 'Paulick Report',                       href: 'https://www.paulickreport.com' },
   { label: 'BloodHorse',                           href: 'https://www.bloodhorse.com/horse-racing' },
   { label: 'Thoroughbred Daily News',              href: 'https://www.thoroughbreddailynews.com' },
