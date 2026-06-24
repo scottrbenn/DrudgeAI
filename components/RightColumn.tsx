@@ -10,7 +10,6 @@ interface Props {
 }
 
 const EXPERT_HANDICAPPERS = [
-  { label: 'Indian Charlie — Horse of the Day',        href: 'https://www.indiancharlie.com' },
   { label: 'Racing Dudes — Daily Best Bets',           href: 'https://www.racingdudes.com/best-bets/' },
   { label: 'Horse Racing Nation — Best Bets',          href: 'https://www.horseracingnation.com/best-bets' },
   { label: 'Past the Wire — Handicapping',             href: 'https://pastthewire.com' },
