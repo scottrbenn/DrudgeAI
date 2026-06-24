@@ -10,36 +10,12 @@ const NAV_LINKS = [
   { label: '✉ Newsletter', href: '#newsletter' },
 ]
 
-const TICKER_ITEMS = [
-  'BELMONT PARK — GATES OPEN 11AM ET',
-  'CHURCHILL DOWNS — FIRST POST 12:45PM ET',
-  'SANTA ANITA — FIRST POST 1PM PT',
-  'SARATOGA — FIRST POST 1PM ET',
-  'KEENELAND — FIRST POST 1:05PM ET',
-  'DEL MAR — FIRST POST 2PM PT',
-]
-
 export default function Header() {
   const now = new Date()
   const dateStr = formatEasternTime(now)
-  const tickerDate = now.toLocaleDateString('en-US', {
-    timeZone: 'America/New_York',
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-  }).toUpperCase()
 
   return (
     <header>
-      {/* Ticker */}
-      <div className="ticker-wrap">
-        <span className="ticker-label">{tickerDate} · TODAY&apos;S TRACKS</span>
-        <span className="ticker-inner">
-          {TICKER_ITEMS.join('   ·   ')}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          {TICKER_ITEMS.join('   ·   ')}
-        </span>
-      </div>
 
       {/* Logo + date */}
       <div className="site-header">
