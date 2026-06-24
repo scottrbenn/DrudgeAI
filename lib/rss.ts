@@ -1,5 +1,5 @@
 import Parser from 'rss-parser'
-import { FEEDS, FeedConfig, YOUTUBE_CHANNELS, YoutubeChannel } from './feeds'
+import { FEEDS, FeedConfig, YOUTUBE_CHANNELS, YoutubeChannel, PODCAST_FEEDS, PodcastFeed } from './feeds'
 import type { Article } from './types'
 
 const parser = new Parser({
@@ -160,6 +160,51 @@ export async function fetchYouTubeVideos(): Promise<Article[]> {
   })
 
   return unique.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()).slice(0, 12)
+}
+
+async function fetchPodcastFeed(feed: PodcastFeed): Promise<Article[]> {
+  try {
+    const result = await parser.parseURL(feed.url)
+    const now = new Date()
+
+    return (result.items ?? []).slice(0, 3).map((item) => {
+      const rawDate = item.isoDate ?? item.pubDate
+      const pubDate = rawDate ? new Date(rawDate) : now
+      const ageHours = (now.getTime() - pubDate.getTime()) / 3_600_000
+      // Link to episode page; fall back to audio enclosure URL
+      const url = item.link ?? item.enclosure?.url ?? '#'
+
+      return {
+        id: item.guid ?? url ?? String(Math.random()),
+        title: cleanTitle(item.title ?? 'Untitled Episode'),
+        url,
+        source: feed.name,
+        pubDate,
+        isNew: ageHours < 72,
+        isBreaking: false,
+      }
+    })
+  } catch {
+    return []
+  }
+}
+
+export async function fetchPodcastEpisodes(): Promise<Article[]> {
+  const results = await Promise.allSettled(PODCAST_FEEDS.map(fetchPodcastFeed))
+
+  const all: Article[] = []
+  for (const r of results) {
+    if (r.status === 'fulfilled') all.push(...r.value)
+  }
+
+  const seen = new Set<string>()
+  const unique = all.filter((a) => {
+    if (seen.has(a.url)) return false
+    seen.add(a.url)
+    return true
+  })
+
+  return unique.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime()).slice(0, 15)
 }
 
 export function formatAge(date: Date): string {

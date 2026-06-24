@@ -10,6 +10,11 @@ export interface YoutubeChannel {
   channelId: string
 }
 
+export interface PodcastFeed {
+  name: string
+  url: string
+}
+
 // Priority 1 = top-tier, gets "BREAKING" treatment
 // Priority 2 = solid secondary sources
 // Priority 3 = general / supplemental
@@ -49,6 +54,20 @@ export const YOUTUBE_CHANNELS: YoutubeChannel[] = [
   { name: 'Santa Anita Park',        channelId: 'UCwfDNxjL1VPZ8iFyAVUQqZA' },
   { name: 'Del Mar Racing',          channelId: 'UC7NsS9H61hQ51JLeaHHeivA' },
   { name: 'Gulfstream Park',         channelId: 'UCe3xqxd95jp8W6m_O93L-hg' },
+]
+
+// Top 10 horse racing podcasts — standard RSS feeds, newest 3 episodes per show
+export const PODCAST_FEEDS: PodcastFeed[] = [
+  { name: 'Blinkers Off',              url: 'https://americasbestracing.podbean.com/feed.xml' },
+  { name: 'Horse Racing Nation',        url: 'https://horseracingnation.podbean.com/feed.xml' },
+  { name: 'Past the Wire Podcast',      url: 'https://pastthewire.com/feed/podcast/' },
+  { name: 'Racing Dudes',              url: 'https://racingdudes.podbean.com/feed.xml' },
+  { name: 'DRF Podcast',               url: 'https://feeds.megaphone.fm/DRF9109180532' },
+  { name: 'BloodHorse Podcast',        url: 'https://feeds.buzzsprout.com/1785792.rss' },
+  { name: 'Paulick Report Podcast',    url: 'https://paulickreport.com/feed/podcast/' },
+  { name: 'TDN Podcast',               url: 'https://www.thoroughbreddailynews.com/feed/podcast/' },
+  { name: 'Wire to Wire',              url: 'https://feeds.buzzsprout.com/2012661.rss' },
+  { name: 'Saratoga Special',           url: 'https://feeds.buzzsprout.com/2143936.rss' },
 ]
 
 // ── Display ad slots — replace URLs with your affiliate tracking links ──────

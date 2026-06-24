@@ -6,6 +6,7 @@ interface Props {
   breaking: Article[]
   recent: Article[]
   youtubeVideos: Article[]
+  podcasts: Article[]
   leftAd?: AdSlot
 }
 
@@ -35,7 +36,7 @@ const RESULTS_TOOLS = [
   { label: 'NTRA — National Thoroughbred Racing Assoc.', href: 'https://www.ntra.com' },
 ]
 
-export default function LeftColumn({ breaking, recent, youtubeVideos, leftAd }: Props) {
+export default function LeftColumn({ breaking, recent, youtubeVideos, podcasts, leftAd }: Props) {
   return (
     <aside className="col" id="breaking">
 
@@ -64,6 +65,17 @@ export default function LeftColumn({ breaking, recent, youtubeVideos, leftAd }: 
         ))
       ) : (
         <p style={{ color: '#666', fontSize: '11px' }}>No recent videos.</p>
+      )}
+
+      <hr className="divider" />
+
+      <div className="section-header">&#127911; Podcasts</div>
+      {podcasts.length > 0 ? (
+        podcasts.map((p) => (
+          <ArticleLink key={p.id} article={p} showSource showAge />
+        ))
+      ) : (
+        <p style={{ color: '#666', fontSize: '11px' }}>No recent episodes.</p>
       )}
 
       <hr className="divider" />

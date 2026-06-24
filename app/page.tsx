@@ -1,4 +1,4 @@
-import { fetchAllArticles, fetchYouTubeVideos } from '@/lib/rss'
+import { fetchAllArticles, fetchYouTubeVideos, fetchPodcastEpisodes } from '@/lib/rss'
 import { fetchTrendingRacingTweets } from '@/lib/twitter'
 import { AD_SLOTS, SPONSORED_LINKS, FEEDS } from '@/lib/feeds'
 import Header from '@/components/Header'
@@ -38,10 +38,11 @@ function categorize(articles: Article[]) {
 }
 
 export default async function Home() {
-  const [all, youtubeVideos, tweets] = await Promise.all([
+  const [all, youtubeVideos, tweets, podcasts] = await Promise.all([
     fetchAllArticles(),
     fetchYouTubeVideos(),
     fetchTrendingRacingTweets(),
+    fetchPodcastEpisodes(),
   ])
   const { breaking, tips, breeding, general } = categorize(all)
 
@@ -73,7 +74,7 @@ export default async function Home() {
       <Header />
 
       <div className="columns-wrap">
-        <LeftColumn breaking={leftBreaking} recent={leftRecent} youtubeVideos={youtubeVideos} leftAd={AD_SLOTS.leftBottom} />
+        <LeftColumn breaking={leftBreaking} recent={leftRecent} youtubeVideos={youtubeVideos} podcasts={podcasts} leftAd={AD_SLOTS.leftBottom} />
         <CenterColumn
           featured={featured}
           subFeatured={subFeatured}
