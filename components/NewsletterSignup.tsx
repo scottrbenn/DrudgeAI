@@ -3,33 +3,45 @@
 import { useState } from 'react'
 
 export default function NewsletterSignup() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+  const [email, setEmail]       = useState('')
+  const [status, setStatus]     = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Replace the action URL below with your beehiiv embed form URL
-    // You get this from: beehiiv dashboard → Publication → Embed
-    const beehiivUrl = process.env.NEXT_PUBLIC_BEEHIIV_URL
-    if (beehiivUrl) {
-      window.open(`${beehiivUrl}?email=${encodeURIComponent(email)}`, '_blank')
+    setStatus('loading')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+
+      if (res.ok) {
+        setStatus('success')
+      } else {
+        const data = await res.json().catch(() => ({}))
+        setErrorMsg(data.error ?? 'Something went wrong — please try again.')
+        setStatus('error')
+      }
+    } catch {
+      setErrorMsg('Network error — please try again.')
+      setStatus('error')
     }
-    setSubmitted(true)
   }
 
   return (
-    <div className="newsletter-box" id="newsletter">
-      <h3>🐎 The Backstretch Report</h3>
-      {submitted ? (
-        <p style={{ color: '#006600', fontWeight: 'bold' }}>
-          Thanks! Check your inbox to confirm.
+    <div className="newsletter-box" id="newsletter-box">
+      <h3>The Backstretch Report</h3>
+      {status === 'success' ? (
+        <p style={{ color: '#2d5a27', fontWeight: 'bold' }}>
+          Thanks! Check your inbox to confirm your subscription.
         </p>
       ) : (
         <>
-          <p>
-            Top stories, tips & results — delivered to your inbox every evening.
-            Free. No spam.
-          </p>
+          <p>Top stories, tips &amp; results — delivered to your inbox every evening. Free. No spam.</p>
           <form onSubmit={handleSubmit}>
             <input
               className="newsletter-input"
@@ -38,10 +50,16 @@ export default function NewsletterSignup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={status === 'loading'}
             />
-            <button className="newsletter-btn" type="submit">
-              Sign Me Up — It&apos;s Free
+            <button className="newsletter-btn" type="submit" disabled={status === 'loading'}>
+              {status === 'loading' ? 'Signing up…' : "Sign Me Up — It's Free"}
             </button>
+            {status === 'error' && (
+              <p style={{ color: '#cc0000', fontSize: '11px', marginTop: '6px' }}>
+                {errorMsg}
+              </p>
+            )}
           </form>
         </>
       )}
